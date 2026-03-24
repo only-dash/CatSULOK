@@ -1,1 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - CATSU Gamers</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <!-- Admin Nav -->
+    <nav class="navbar admin-nav">
+        <div class="nav-container">
+            <a href="feed.html" class="logo">
+                <span class="logo-catsu">CATSU</span>
+                <span class="logo-hub">ADMIN</span>
+            </a>
+            <div class="nav-links">
+                <span class="admin-badge">👨‍💼 Admin Mode</span>
+                <button id="logoutBtn" class="btn-logout">Logout</button>
+            </div>
+        </div>
+    </nav>
 
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="admin-profile">
+                <div class="admin-avatar">👨‍💼</div>
+                <h3 id="adminName">Admin</h3>
+                <p>Moderator</p>
+            </div>
+
+            <nav class="admin-menu">
+                <a href="#pending" class="menu-item active" data-tab="pending">
+                    <span class="menu-icon">⏳</span>
+                    <span>Pending Verifications</span>
+                    <span class="badge" id="pendingCount">0</span>
+                </a>
+                <a href="#verified" class="menu-item" data-tab="verified">
+                    <span class="menu-icon">✅</span>
+                    <span>Verified Students</span>
+                    <span class="badge" id="verifiedCount">0</span>
+                </a>
+                <a href="#posts" class="menu-item" data-tab="posts">
+                    <span class="menu-icon">📝</span>
+                    <span>All Posts</span>
+                    <span class="badge" id="postsCount">0</span>
+                </a>
+                <a href="#reports" class="menu-item" data-tab="reports">
+                    <span class="menu-icon">🚨</span>
+                    <span>Reports</span>
+                    <span class="badge" id="reportsCount">0</span>
+                </a>
+            </nav>
+
+            <div class="admin-stats">
+                <div class="stat-box">
+                    <span class="stat-number" id="totalUsers">0</span>
+                    <span class="stat-label">Total Users</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number" id="todaySignups">0</span>
+                    <span class="stat-label">Today</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <!-- Pending Verifications Tab -->
+            <div class="tab-content active" id="pendingTab">
+                <div class="tab-header">
+                    <h2>⏳ Pending Verifications</h2>
+                    <p>Review student ID submissions and approve accounts</p>
+                </div>
+
+                <div class="verification-queue" id="verificationQueue">
+                    <!-- Empty State -->
+                    <div class="empty-state" id="emptyPending">
+                        <div class="empty-icon">🎉</div>
+                        <h3>All caught up!</h3>
+                        <p>No pending verifications at the moment.</p>
+                    </div>
+
+                    <!-- Verification Cards Container -->
+                    <div class="verification-list" id="verificationList"></div>
+                </div>
+            </div>
+
+            <!-- Verified Students Tab -->
+            <div class="tab-content" id="verifiedTab">
+                <div class="tab-header">
+                    <h2>✅ Verified Students</h2>
+                    <p>All approved CATSU students</p>
+                </div>
+
+                <div class="students-table-container">
+                    <table class="students-table">
+                        <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>ID Number</th>
+                                <th>Course</th>
+                                <th>Verified Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="verifiedList"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- All Posts Tab -->
+            <div class="tab-content" id="postsTab">
+                <div class="tab-header">
+                    <h2>📝 All Posts</h2>
+                    <p>Manage community posts</p>
+                </div>
+
+                <div class="admin-posts" id="adminPostsList"></div>
+            </div>
+
+            <!-- Reports Tab -->
+            <div class="tab-content" id="reportsTab">
+                <div class="tab-header">
+                    <h2>🚨 Reports</h2>
+                    <p>User reports and flagged content</p>
+                </div>
+
+                <div class="reports-list" id="reportsList">
+                    <div class="empty-state">
+                        <div class="empty-icon">✨</div>
+                        <h3>No reports</h3>
+                        <p>The community is behaving well!</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Verification Review Modal -->
+    <div class="modal" id="reviewModal">
+        <div class="modal-content review-modal">
+            <div class="modal-header">
+                <h3>Review Verification</h3>
+                <button class="modal-close" id="closeReview">×</button>
+            </div>
+
+            <div class="review-content">
+                <div class="verification-photo">
+                    <img id="reviewImage" src="" alt="Student ID Photo">
+                </div>
+
+                <div class="verification-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Name:</span>
+                        <span class="detail-value" id="reviewName">-</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Email:</span>
+                        <span class="detail-value" id="reviewEmail">-</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Student ID:</span>
+                        <span class="detail-value" id="reviewId">-</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Course:</span>
+                        <span class="detail-value" id="reviewCourse">-</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Submitted:</span>
+                        <span class="detail-value" id="reviewDate">-</span>
+                    </div>
+                </div>
+
+                <div class="verification-checklist">
+                    <h4>Verification Checklist:</h4>
+                    <label class="check-item">
+                        <input type="checkbox" id="checkFace">
+                        <span>Face matches ID photo</span>
+                    </label>
+                    <label class="check-item">
+                        <input type="checkbox" id="checkIdClear">
+                        <span>ID is clearly readable</span>
+                    </label>
+                    <label class="check-item">
+                        <input type="checkbox" id="checkValid">
+                        <span>ID appears valid (not expired)</span>
+                    </label>
+                    <label class="check-item">
+                        <input type="checkbox" id="checkCatsu">
+                        <span>CATSU logo/name visible</span>
+                    </label>
+                </div>
+
+                <div class="review-actions">
+                    <button class="btn-reject" id="rejectBtn">
+                        <span>❌</span> Reject
+                    </button>
+                    <button class="btn-approve" id="approveBtn">
+                        <span>✅</span> Approve Account
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reject Reason Modal -->
+    <div class="modal" id="rejectModal">
+        <div class="modal-content">
+            <h3>Reject Verification</h3>
+            <p>Please provide a reason for rejection:</p>
+            <select id="rejectReason" class="reject-select">
+                <option value="">Select reason...</option>
+                <option value="unclear">Unclear/blurry photo</option>
+                <option value="mismatch">Face doesn't match ID</option>
+                <option value="invalid">Invalid/expired ID</option>
+                <option value="not_catsu">Not a CATSU ID</option>
+                <option value="other">Other (specify in notes)</option>
+            </select>
+            <textarea id="rejectNotes" placeholder="Additional notes (optional)..."></textarea>
+            <div class="modal-actions">
+                <button class="btn-secondary" id="cancelReject">Cancel</button>
+                <button class="btn-danger" id="confirmReject">Confirm Reject</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>
+
+==================================================
+Admin HTML created! Next: Admin CSS
