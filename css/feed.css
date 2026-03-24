@@ -1,0 +1,571 @@
+/* Feed Page Styles */
+
+.feed-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 1rem 2rem;
+    display: grid;
+    grid-template-columns: 250px 1fr 250px;
+    gap: 2rem;
+}
+
+/* Sidebars */
+.sidebar-left,
+.sidebar-right {
+    position: sticky;
+    top: 80px;
+    height: fit-content;
+}
+
+.user-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.user-avatar {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin: 0 auto 1rem;
+    border: 3px solid var(--bg-hover);
+}
+
+.user-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+}
+
+.user-course {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+.user-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+}
+
+.mini-stat {
+    display: flex;
+    flex-direction: column;
+}
+
+.mini-number {
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.mini-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.quick-links {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1rem;
+}
+
+.quick-links h4 {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.quick-link {
+    display: block;
+    padding: 0.75rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s;
+    margin-bottom: 0.5rem;
+}
+
+.quick-link:hover {
+    background: var(--bg-hover);
+}
+
+/* Main Feed */
+.main-feed {
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Create Post Box */
+.create-post-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.create-post-input {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 12px;
+    transition: background 0.3s;
+}
+
+.create-post-input:hover {
+    background: var(--bg-hover);
+}
+
+.post-avatar-small {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.create-post-input input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.post-actions-preview {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* Empty Feed */
+.empty-feed {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    border-style: dashed;
+}
+
+.empty-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.empty-feed h2 {
+    margin-bottom: 0.5rem;
+}
+
+.empty-feed p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+/* Posts */
+.posts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.post-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    animation: slideUp 0.4s ease-out;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+}
+
+.post-avatar {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.post-info {
+    flex: 1;
+}
+
+.post-author {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.post-meta {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.post-menu {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.post-content {
+    padding: 0 1rem 1rem;
+}
+
+.post-text {
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+}
+
+.post-image {
+    width: 100%;
+    border-radius: 12px;
+    margin-top: 0.5rem;
+}
+
+.post-actions {
+    display: flex;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    border-top: 1px solid var(--border);
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.action-btn:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+}
+
+.action-btn.liked {
+    color: #ef4444;
+}
+
+.action-btn.liked:hover {
+    color: #f87171;
+}
+
+/* Right Sidebar */
+.trending-box,
+.online-now {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.trending-box h4,
+.online-now h4 {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.trending-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+}
+
+.trend-rank {
+    width: 24px;
+    height: 24px;
+    background: var(--bg-hover);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.trending-item:first-child .trend-rank {
+    background: linear-gradient(135deg, #f59e0b, #ef4444);
+}
+
+.trend-name {
+    font-size: 0.9rem;
+}
+
+.online-user {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+}
+
+.online-avatar {
+    width: 32px;
+    height: 32px;
+    background: var(--bg-hover);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    position: relative;
+}
+
+.online-avatar::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    background: var(--success);
+    border-radius: 50%;
+    border: 2px solid var(--bg-card);
+}
+
+/* Post Modal */
+.post-modal {
+    max-width: 500px;
+}
+
+.post-creator {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.post-creator-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.creator-name {
+    font-weight: 600;
+}
+
+.privacy-select {
+    background: var(--bg-hover);
+    border: none;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    margin-top: 0.25rem;
+    cursor: pointer;
+}
+
+.post-textarea {
+    width: 100%;
+    min-height: 120px;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1rem;
+    resize: none;
+    margin-bottom: 1rem;
+    font-family: inherit;
+}
+
+.post-textarea:focus {
+    outline: none;
+}
+
+.post-textarea::placeholder {
+    color: var(--text-secondary);
+}
+
+.image-preview-area {
+    position: relative;
+    margin-bottom: 1rem;
+    display: none;
+}
+
+.image-preview-area.active {
+    display: block;
+}
+
+.image-preview-area img {
+    width: 100%;
+    border-radius: 12px;
+    max-height: 300px;
+    object-fit: cover;
+}
+
+.remove-image {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 32px;
+    height: 32px;
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.25rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.post-options {
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.add-to-post {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+}
+
+.post-option-btns {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.option-btn {
+    background: var(--bg-hover);
+    border: none;
+    color: var(--text-secondary);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.option-btn:hover {
+    background: var(--border);
+    color: var(--text-primary);
+}
+
+/* Test Accounts */
+.test-accounts {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 1rem 0;
+}
+
+.test-account-btn {
+    background: var(--bg-hover);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem;
+    cursor: pointer;
+    text-align: left;
+    color: var(--text-primary);
+    transition: all 0.3s;
+}
+
+.test-account-btn:hover {
+    border-color: var(--primary);
+    background: rgba(99, 102, 241, 0.1);
+}
+
+.test-account-btn strong {
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.test-account-btn small {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+/* Floating Action Button */
+.fab {
+    display: none;
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+    z-index: 100;
+}
+
+/* Logout Button */
+.btn-logout {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.btn-logout:hover {
+    border-color: #ef4444;
+    color: #ef4444;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .feed-container {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar-left,
+    .sidebar-right {
+        display: none;
+    }
+
+    .main-feed {
+        max-width: 100%;
+    }
+}
+
+@media (max-wi<response clipped><NOTE>Result is longer than **10000 characters**, will be **truncated**.</NOTE>
