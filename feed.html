@@ -1,1 +1,270 @@
+╔══════════════════════════════════════════════════════════════════╗
+║              🎮 CATSU GAMERS HUB - COMPLETE WEBSITE              ║
+╠══════════════════════════════════════════════════════════════════╣
+║                                                                  ║
+║  📁 FILES CREATED:                                               ║
+║                                                                  ║
+║  HTML Pages:                                                     ║
+║  ├── index.html          (Landing page with floating cards)      ║
+║  ├── signup.html         (4-step verification flow)              ║
+║  ├── login.html          (Login with remember me)                ║
+║  └── feed.html           (FULL FEATURED - see below)             ║
+║                                                                  ║
+║  CSS:                                                            ║
+║  ├── css/style.css       (Main dark gaming theme)                ║
+║  ├── css/signup.css      (Signup flow styles)                    ║
+║  ├── css/login.css       (Login page styles)                     ║
+║  └── css/feed.css        (Feed layout & components)              ║
+║                                                                  ║
+║  JavaScript:                                                     ║
+║  ├── js/signup.js        (Step logic, OTP, upload)               ║
+║  ├── js/login.js         (Auth, modals, notifications)           ║
+║  └── js/feed.js          (Posts, likes, test accounts)           ║
+║                                                                  ║
+╠══════════════════════════════════════════════════════════════════╣
+║  🚀 FEED PAGE FEATURES:                                          ║
+║                                                                  ║
+║  ✅ Test Account Modal (no signup needed!):                      ║
+║     • Admin: admin@catsu.edu.ph / admin123                       ║
+║     • Test: test@gmail.com / test123                             ║
+║                                                                  ║
+║  ✅ Create Posts:                                                ║
+║     • Text caption                                               ║
+║     • Image upload (with preview)                                ║
+║     • Privacy settings (Public/CATSU only)                       ║
+║                                                                  ║
+║  ✅ Interactions:                                                ║
+║     • Like/unlike posts (animated)                               ║
+║     • Delete posts (admin or owner only)                         ║
+║     • Time ago display (Just now, 5m ago, etc.)                  ║
+║                                                                  ║
+║  ✅ UI Components:                                               ║
+║     • Empty state ("Be the first to post!")                     ║
+║     • User sidebar with stats                                    ║
+║     • Trending games sidebar                                     ║
+║     • Online now indicator                                       ║
+║     • Floating action button (mobile)                            ║
+║                                                                  ║
+║  ✅ Data Persistence:                                            ║
+║     • LocalStorage for posts                                     ║
+║     • Session storage for login                                  ║
+║     • Posts survive page refresh!                                ║
+║                                                                  ║
+╠══════════════════════════════════════════════════════════════════╣
+║  🧪 TESTING INSTRUCTIONS:                                        ║
+║                                                                  ║
+║  1. Open feed.html                                               ║
+║  2. Test account modal appears automatically                     ║
+║  3. Click "Admin Account" or "Test Student"                      ║
+║  4. Click "Create Post" (or floating + button on mobile)        ║
+║  5. Add caption and/or image                                     ║
+║  6. Click Post!                                                  ║
+║  7. Try liking your post                                         ║
+║  8. Refresh page - post is still there!                          ║
+║                                                                  ║
+║  To clear all posts: Open DevTools → Application →               ║
+║  Local Storage → Right click → Clear                             ║
+║                                                                  ║
+╚══════════════════════════════════════════════════════════════════╝
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feed - CATSU Gamers Hub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/feed.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="feed.html" class="logo">
+                <span class="logo-catsu">CATSU</span>
+                <span class="logo-hub">GAMERS</span>
+            </a>
+            <div class="nav-links">
+                <a href="feed.html" class="active">Feed</a>
+                <a href="profile.html">Profile</a>
+                <button id="logoutBtn" class="btn-logout">Logout</button>
+            </div>
+        </div>
+    </nav>
 
+    <!-- Main Container -->
+    <div class="feed-container">
+        <!-- Sidebar Left -->
+        <aside class="sidebar-left">
+            <div class="user-card">
+                <div class="user-avatar" id="userAvatar">🎮</div>
+                <h3 id="userName">Loading...</h3>
+                <p id="userCourse" class="user-course">Loading...</p>
+                <div class="user-stats">
+                    <div class="mini-stat">
+                        <span class="mini-number" id="postCount">0</span>
+                        <span class="mini-label">Posts</span>
+                    </div>
+                    <div class="mini-stat">
+                        <span class="mini-number">0</span>
+                        <span class="mini-label">Likes</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quick-links">
+                <h4>Quick Links</h4>
+                <a href="#" class="quick-link">🏆 Tournaments</a>
+                <a href="#" class="quick-link">👥 Find Squad</a>
+                <a href="#" class="quick-link">📢 Announcements</a>
+            </div>
+        </aside>
+
+        <!-- Main Feed -->
+        <main class="main-feed">
+            <!-- Create Post Box -->
+            <div class="create-post-box">
+                <div class="create-post-input" id="openPostModal">
+                    <div class="post-avatar-small" id="createPostAvatar">🎮</div>
+                    <input type="text" placeholder="Share your gaming highlights..." readonly>
+                    <div class="post-actions-preview">
+                        <span>📸 Photo</span>
+                        <span>🎥 Video</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-feed" id="emptyFeed">
+                <div class="empty-icon">🎮</div>
+                <h2>No posts yet!</h2>
+                <p>Be the first to share your gaming highlights with the CATSU community.</p>
+                <button class="btn-glow" id="firstPostBtn">Create First Post</button>
+            </div>
+
+            <!-- Posts Container -->
+            <div class="posts-container" id="postsContainer"></div>
+        </main>
+
+        <!-- Sidebar Right -->
+        <aside class="sidebar-right">
+            <div class="trending-box">
+                <h4>🔥 Trending Games</h4>
+                <div class="trending-item">
+                    <span class="trend-rank">1</span>
+                    <span class="trend-name">Mobile Legends</span>
+                </div>
+                <div class="trending-item">
+                    <span class="trend-rank">2</span>
+                    <span class="trend-name">COD Mobile</span>
+                </div>
+                <div class="trending-item">
+                    <span class="trend-rank">3</span>
+                    <span class="trend-name">Genshin Impact</span>
+                </div>
+                <div class="trending-item">
+                    <span class="trend-rank">4</span>
+                    <span class="trend-name">Valorant Mobile</span>
+                </div>
+            </div>
+
+            <div class="online-now">
+                <h4>🟢 Online Now</h4>
+                <div class="online-user">
+                    <div class="online-avatar">👤</div>
+                    <span>Admin_Mod</span>
+                </div>
+                <div class="online-user">
+                    <div class="online-avatar">👤</div>
+                    <span>Test_User</span>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Create Post Modal -->
+    <div class="modal" id="postModal">
+        <div class="modal-content post-modal">
+            <div class="modal-header">
+                <h3>Create Post</h3>
+                <button class="modal-close" id="closePostModal">×</button>
+            </div>
+
+            <div class="post-creator">
+                <div class="post-avatar" id="modalAvatar">🎮</div>
+                <div class="post-creator-info">
+                    <span class="creator-name" id="modalUserName">User</span>
+                    <select class="privacy-select">
+                        <option>🌎 Public</option>
+                        <option>👥 CATSU Only</option>
+                    </select>
+                </div>
+            </div>
+
+            <textarea class="post-textarea" id="postCaption" placeholder="What's your gaming moment? Share your highlights, achievements, or find teammates!"></textarea>
+
+            <div class="image-preview-area" id="imagePreviewArea">
+                <img id="previewImage" src="" alt="Preview">
+                <button class="remove-image" id="removeImage">×</button>
+            </div>
+
+            <div class="post-options">
+                <span class="add-to-post">Add to your post:</span>
+                <div class="post-option-btns">
+                    <button class="option-btn" id="addPhotoBtn" title="Photo">
+                        📸 Photo
+                    </button>
+                    <button class="option-btn" title="Video">
+                        🎥 Video
+                    </button>
+                    <button class="option-btn" title="Game Tag">
+                        🎮 Game
+                    </button>
+                </div>
+            </div>
+
+            <input type="file" id="postImageInput" accept="image/*" hidden>
+
+            <button class="btn-glow btn-full" id="submitPost">
+                Post
+            </button>
+        </div>
+    </div>
+
+    <!-- Test Account Modal (for dev purposes) -->
+    <div class="modal" id="testAccountModal">
+        <div class="modal-content">
+            <h3>🚀 Developer Mode</h3>
+            <p>Quick login with test accounts:</p>
+
+            <div class="test-accounts">
+                <button class="test-account-btn" data-email="admin@catsu.edu.ph" data-pass="admin123" data-name="Admin Moderator" data-course="BSIT - Admin">
+                    <strong>Admin Account</strong>
+                    <small>admin@catsu.edu.ph / admin123</small>
+                </button>
+
+                <button class="test-account-btn" data-email="test@gmail.com" data-pass="test123" data-name="Test Student" data-course="BSIT - 3rd Year">
+                    <strong>Test Student</strong>
+                    <small>test@gmail.com / test123</small>
+                </button>
+            </div>
+
+            <hr style="border-color: var(--border); margin: 1.5rem 0;">
+
+            <p style="font-size: 0.9rem; color: var(--text-secondary);">
+                Or continue with regular signup/login
+            </p>
+            <button class="btn-secondary btn-full" id="closeTestModal" style="margin-top: 1rem;">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <!-- Floating Action Button (Mobile) -->
+    <button class="fab" id="mobilePostBtn">+</button>
+
+    <script src="js/feed.js"></script>
+</body>
+</html>
+
+==================================================
+Feed HTML created! Next: Feed CSS
