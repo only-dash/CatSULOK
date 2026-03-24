@@ -1,1 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join CATSU Gamers - Signup</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/signup.css">
+</head>
+<body>
+    <!-- Simple Nav -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-catsu">CATSU</span>
+                <span class="logo-hub">GAMERS</span>
+            </a>
+            <a href="login.html" class="btn-login">Already have an account?</a>
+        </div>
+    </nav>
 
+    <!-- Signup Container -->
+    <div class="signup-container">
+        <!-- Progress Steps -->
+        <div class="progress-bar">
+            <div class="step active" data-step="1">
+                <div class="step-number">1</div>
+                <span>Email</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step" data-step="2">
+                <div class="step-number">2</div>
+                <span>Verify</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step" data-step="3">
+                <div class="step-number">3</div>
+                <span>Selfie</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step" data-step="4">
+                <div class="step-number">4</div>
+                <span>Done</span>
+            </div>
+        </div>
+
+        <!-- Step 1: Email -->
+        <div class="form-step active" id="step1">
+            <div class="form-header">
+                <h2>Create Your Account</h2>
+                <p>Enter your Gmail to get started</p>
+            </div>
+
+            <form id="emailForm">
+                <div class="input-group">
+                    <label for="email">Gmail Address</label>
+                    <input type="email" id="email" placeholder="yourname@gmail.com" required>
+                    <span class="input-hint">We'll send a verification code here</span>
+                </div>
+
+                <button type="submit" class="btn-glow btn-full">
+                    Send OTP
+                    <span class="btn-arrow">→</span>
+                </button>
+            </form>
+        </div>
+
+        <!-- Step 2: OTP Verification -->
+        <div class="form-step" id="step2">
+            <div class="form-header">
+                <h2>Verify Your Email</h2>
+                <p>Enter the 6-digit code sent to <span id="emailDisplay" class="highlight-email"></span></p>
+            </div>
+
+            <form id="otpForm">
+                <div class="otp-inputs">
+                    <input type="text" maxlength="1" class="otp-digit" required>
+                    <input type="text" maxlength="1" class="otp-digit" required>
+                    <input type="text" maxlength="1" class="otp-digit" required>
+                    <input type="text" maxlength="1" class="otp-digit" required>
+                    <input type="text" maxlength="1" class="otp-digit" required>
+                    <input type="text" maxlength="1" class="otp-digit" required>
+                </div>
+
+                <div class="resend-code">
+                    Didn't receive it? <a href="#" id="resendOtp">Resend code</a>
+                    <span id="countdown"></span>
+                </div>
+
+                <button type="submit" class="btn-glow btn-full">
+                    Verify Code
+                    <span class="btn-arrow">→</span>
+                </button>
+            </form>
+        </div>
+
+        <!-- Step 3: Selfie + ID Upload -->
+        <div class="form-step" id="step3">
+            <div class="form-header">
+                <h2>Student Verification</h2>
+                <p>Take a selfie holding your CATSU ID</p>
+            </div>
+
+            <div class="verification-guide">
+                <div class="guide-item correct">
+                    <div class="guide-img">✓</div>
+                    <span>Face clearly visible</span>
+                </div>
+                <div class="guide-item correct">
+                    <div class="guide-img">✓</div>
+                    <span>ID readable</span>
+                </div>
+                <div class="guide-item wrong">
+                    <div class="guide-img">✗</div>
+                    <span>No blurry photos</span>
+                </div>
+            </div>
+
+            <form id="verificationForm">
+                <!-- Selfie Upload -->
+                <div class="upload-section">
+                    <label class="upload-label">Selfie with CATSU ID</label>
+                    <div class="upload-area" id="selfieUpload">
+                        <input type="file" id="selfieInput" accept="image/*" capture="user" hidden>
+                        <div class="upload-placeholder">
+                            <div class="upload-icon">📸</div>
+                            <p>Tap to take photo or upload</p>
+                            <span class="upload-hint">Show your face + ID clearly</span>
+                        </div>
+                        <div class="upload-preview hidden">
+                            <img id="selfiePreview" src="" alt="Preview">
+                            <button type="button" class="btn-retake">Retake</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Info -->
+                <div class="input-group">
+                    <label for="studentName">Full Name (as in ID)</label>
+                    <input type="text" id="studentName" placeholder="Juan Dela Cruz" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="studentId">Student ID Number</label>
+                    <input type="text" id="studentId" placeholder="2021-XXXXX" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="course">Course</label>
+                    <select id="course" required>
+                        <option value="">Select your course</option>
+                        <option value="bsit">BS Information Technology</option>
+                        <option value="bscs">BS Computer Science</option>
+                        <option value="bsed">BS Education</option>
+                        <option value="bsba">BS Business Administration</option>
+                        <option value="bshm">BS Hospitality Management</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Create Password</label>
+                    <input type="password" id="password" placeholder="Min 8 characters" required>
+                    <div class="password-strength">
+                        <div class="strength-bar"></div>
+                        <span class="strength-text">Password strength</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-glow btn-full" id="submitVerification">
+                    Submit for Review
+                    <span class="btn-arrow">→</span>
+                </button>
+            </form>
+        </div>
+
+        <!-- Step 4: Success/Pending -->
+        <div class="form-step" id="step4">
+            <div class="success-container">
+                <div class="success-icon">⏳</div>
+                <h2>Verification Pending</h2>
+                <p>Your account is under review. We'll notify you via email once verified.</p>
+                <div class="review-info">
+                    <div class="info-item">
+                        <span class="info-label">Email:</span>
+                        <span id="finalEmail" class="info-value"></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Estimated time:</span>
+                        <span class="info-value">24-48 hours</span>
+                    </div>
+                </div>
+                <a href="index.html" class="btn-secondary btn-full">Back to Home</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/signup.js"></script>
+</body>
+</html>
+
+==================================================
+Signup HTML created! Next: Signup CSS
